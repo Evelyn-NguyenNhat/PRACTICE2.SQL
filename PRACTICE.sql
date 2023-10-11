@@ -1,6 +1,24 @@
-
-
-
+/*EX1 */ 
+SELECT DISTINCT CITY 
+FROM STATION
+WHERE ID%2-0;
+/*EX2*/ 
+SELECT COUNT(CITY)-COUNT(DISTINCT CITY) AS DIFFERENCE
+FROM STATION;
+/*ex3 */
+SELECT CEIL(AVG(salary)-AVG(REPLACE(Salary, '0', ' ')))
+FROM EMPLOYEES
+/*ex4*/
+SELECT 
+ROUND(SUM(item_count::DECIMAL*order_occurrences) /SUM(order_occurrences) ,1) AS mean
+FROM items_per_order;
+/*ex5: Write a query to list the candidates who possess all of the required skills for the job. Sort the output by candidate ID in ascending order.*/
+SELECT candidate_id
+FROM candidates
+WHERE skill IN ('Python', 'Tableau', 'PostgreSQL')
+GROUP BY candidate_id
+HAVING COUNT(skill) = 3
+ORDER BY candidate_id;
 
 /*ex6: Given a table of Facebook posts, for each user who posted at least twice in 2021, write a query to find the number of days between each user’s 
 first post of the year and last post of the year in the year 2021. Output the user and number of the days between each user's first and last post.*/
